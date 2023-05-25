@@ -63,7 +63,7 @@ fast.post('/send', body_schema, async (req, res) => {
 
 const start = async () => {
   try {
-    fast.listen({port: process.env.PORT}, (err) => {
+    fast.listen({port: process.env.PORT, host: '0.0.0.0'}, (err) => {
         if(err) {
             throw new Error(err)
         }else{
