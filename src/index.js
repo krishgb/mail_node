@@ -63,7 +63,13 @@ fast.post('/send', body_schema, async (req, res) => {
 
 const start = async () => {
   try {
-    await fast.listen(process.env.PORT);
+    fast.listen({port: process.env.PORT}, (err) => {
+        if(err) {
+            throw new Error(err)
+        }else{
+            console.log(`Mail service running on port ${process.env.PORT}`);
+        }
+    });
   } catch (e) {
     fast.log.error(e);
     process.exit(1);
